@@ -4,7 +4,11 @@ import React from 'react'
 class MyComponent extends React.Component{
     render(){
         return(
-            <div>HelloWorld!</div>
+            <div>
+                Hello World!
+                {Math.random()}
+            </div>
+            
         )
     }
 }
