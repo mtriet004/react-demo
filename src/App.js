@@ -1,12 +1,19 @@
 
 import './App.css';
 import MyComponent from './components/MyComponent'
-function App() {
-  return (
+import React from 'react';
 
-    <div>
-      <MyComponent />
-    </div>
+class App extends React.Component{
+  render(){
+    return(
+      <div>
+        <MyComponent />
+      </div>
+    )
+  }
+}
+
+    
     // <div className="App">
     //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
@@ -23,7 +30,4 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-  );
-}
-
 export default App;
