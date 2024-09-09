@@ -58,11 +58,11 @@ const DisplayInfo = (props) =>{
     console.log("call me render")
 
     useEffect(() =>{
-        setTimeout(() => {
-            document.title='aaa'
-        }, 3000)
-        console.log("call me UseEffect")
-    },[]);
+        if(listUsers.length ===0){
+            alert('me')
+        }
+        // console.log("call me UseEffect")
+    },[listUsers]);
     // = componentDidMount nếu ko truyền tham số phụ thuộc, []: chỉ render lần đầu
 
     return(  
@@ -89,8 +89,7 @@ const DisplayInfo = (props) =>{
                                 </div>                                   
                             )                      
                         })
-                    }
-                            
+                    }                           
                 </>
             }
         </div>
