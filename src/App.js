@@ -1,11 +1,9 @@
-import './App.css';
- 
-const App = () => {
-  return(
-    <div className='app-container'>
-      <h2>Hello World</h2>
-      <button className='btn btn-success'>Test</button>
-    </div> 
-  )
-}
+import './App.scss';
+import Header from './components/Header/Header';
+
+const App = () => (
+  <div className='app-container'>
+    <Header />
+  </div>
+)
 export default App;
