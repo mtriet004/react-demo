@@ -17,7 +17,7 @@ body {
 
     @media (min-width: 1400px) {
         .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
-            max-width: 1380px !important;
+            max-width: 1200px !important;
         }
     }
 }
@@ -31,6 +31,7 @@ code {
 
 .app-container{
     .header-container{
+        padding-right: 250px;
         .btn-login{
             border-radius: 5px;
             padding: 0 15px;
@@ -51,8 +52,10 @@ code {
             }
         }
         .navbar{
+            font-size: 1.5em;
             z-index: 10;
             background-color: rgba(0,0,0, 0) !important;
+            
             .nav-link{
                 &.active{
                     color: #00bfff;
@@ -63,14 +66,49 @@ code {
         //     color: blue;
         // }
     }
+    .homepage-container{
+        .homepage-content{
+            padding: 100px;
+            width: 50%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            .f-title{
+                font-size: 35px;
+                font-weight: 600;
+                font-style: initial;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            .s-title{
+                font-size: 22px;
+                // font-style: italic;
+                font-family: 'Montserrat', sans-serif;
+            }
+            .t-title{
+                button{
+                    border-radius: 5px;
+                    padding: 0 15px;
+                    background: #303030;
+                    color: white;
+                    height: 40px;
+                    &:hover{
+                    background: black;
+                    }
+                }
+            }
+        }
+        // padding: 100px;
+        
+    }
+    
 }
 
 video{
     position: fixed;
-    margin-top: 50px;
-    margin-left: 100px;
-    // right: 0;
-    width: 35vw;
+    bottom: 0;
+    width: 100vw;
 }
+
 
     
