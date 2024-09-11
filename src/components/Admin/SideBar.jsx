@@ -1,16 +1,20 @@
 import 'react-pro-sidebar/dist/css/styles.css';
+import './SideBar.scss'
 import {
     ProSidebar,
     Menu,
     MenuItem,
     SubMenu,
     SidebarHeader,
-    // SidebarFooter,
+    SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
-
-import { FaTachometerAlt, FaGem, FaRegLaughWink } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import {FaGem, FaGithub } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
+
+import {MdDashboard} from 'react-icons/md'
+import {DiReact} from 'react-icons/di'
 
 const SideBar = (props) =>{
     const {collapsed, toggled, handleToggleSidebar} = props
@@ -36,34 +40,39 @@ const SideBar = (props) =>{
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        Hoi Dan IT
+                        <DiReact size={'3em'} color='00bfff'/>
+                        <span>Minh Triết</span>
                     </div>
                 </SidebarHeader>
 
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem
-                            icon={<FaTachometerAlt />}
+                            icon={<MdDashboard />}
                             suffix={<span className="badge red">New</span>}
                         >
-                            dashboard
+                            Dashboard
+                            <Link to='/admins'></Link>
                         </MenuItem>
-                        <MenuItem icon={<FaGem />}> components </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
+                        {/* <MenuItem icon={<FaGem />}> components </MenuItem> */}
                         <SubMenu
                             suffix={<span className="badge yellow">3</span>}
-                            icon={<FaRegLaughWink />}
+                            title='Features'
+                            icon={<FaGem/>}
                         >
-                            <MenuItem> 1</MenuItem>
-                            <MenuItem> 2</MenuItem>
-                            <MenuItem> 3</MenuItem>
+                            <MenuItem > Quản lý Users
+                            <Link to='/admins/manage-users'></Link>
+                            </MenuItem>
+                            <MenuItem> Quản lý bài Quiz</MenuItem>
+                            <MenuItem> Quản lý câu hỏi</MenuItem>
                         </SubMenu>
-
                     </Menu>
+                    {/* <Menu iconShape="circle">
+                        
+                    </Menu> */}
                 </SidebarContent>
 
-                {/* <SidebarFooter style={{ textAlign: 'center' }}>
+                <SidebarFooter style={{ textAlign: 'center' }}>
                     <div
                         className="sidebar-btn-wrapper"
                         style={{
@@ -71,18 +80,18 @@ const SideBar = (props) =>{
                         }}
                     >
                         <a
-                            href="https://github.com/azouaoui-med/react-pro-sidebar"
+                            href="https://youtube.com"
                             target="_blank"
                             className="sidebar-btn"
                             rel="noopener noreferrer"
                         >
                             <FaGithub />
                             <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                viewSource
+                                MinhTriet
                             </span>
                         </a>
                     </div>
-                </SidebarFooter> */}
+                </SidebarFooter>
             </ProSidebar>
         </>
     )
