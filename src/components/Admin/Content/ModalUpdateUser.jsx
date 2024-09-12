@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { LuImagePlus } from "react-icons/lu";
 import { toast } from 'react-toastify';
-import { createNewUser } from '../../../service/APIService';
+import { updateUser } from '../../../service/APIService';
 import _ from 'lodash'
 const ModalUpdateUser = (props) => {    
   const {show, setShow, dataUpdate} = props  
@@ -18,6 +18,7 @@ const ModalUpdateUser = (props) => {
     setRole('USER')
     setImage('')
     setPreviewImage('')
+    props.setDataUpdate({})
   };
 //   const handleShow = () => setShow(true);
   
@@ -48,13 +49,13 @@ const ModalUpdateUser = (props) => {
     } 
     
   }
-  const validateEmail = (email) => {
+    const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
       .match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       );
-  };
+    };
 
   const handleSubmitCreateUser = async() =>{
     //validate
@@ -64,12 +65,7 @@ const ModalUpdateUser = (props) => {
       return
     } 
 
-    if(!password){
-      toast.error('invalid password!')
-      return
-    }
-    
-    let data = await createNewUser(email, password, username, role, image)
+    let data = await updateUser(dataUpdate.id, username, role, image)
     console.log('component res: ', data)
     // console.log('check res', data)
     if(data && data.EC === 0){
