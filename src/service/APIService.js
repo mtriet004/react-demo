@@ -22,4 +22,7 @@ const updateUser = (id, username, role, image) =>{
 }
 
 export const getAllUser = () => axios.get('/api/v1/participant/all')
+
+export const deleteUser = (userId) => axios.delete('/api/v1/participant',{ data: {id: userId} }) //
+
 export {createNewUser, updateUser}
