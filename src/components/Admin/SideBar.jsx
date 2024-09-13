@@ -12,12 +12,13 @@ import {
 import { Link } from 'react-router-dom';
 import {FaGem, FaGithub } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
-
+import { useNavigate } from 'react-router-dom';
 import {MdDashboard} from 'react-icons/md'
 import {DiReact} from 'react-icons/di'
 
 const SideBar = (props) =>{
     const {collapsed, toggled, handleToggleSidebar} = props
+    const navigator = useNavigate()
     return(
         <>
              <ProSidebar
@@ -40,8 +41,8 @@ const SideBar = (props) =>{
                             whiteSpace: 'nowrap',
                         }}
                     >
-                        <DiReact size={'3em'} color='00bfff'/>
-                        <span>Minh Triết</span>
+                        
+                        <span style={{cursor: 'pointer'}} onClick={() =>{navigator('/')}}> <DiReact size={'3em'} color='00bfff'/> Minh Triết</span>
                     </div>
                 </SidebarHeader>
 
