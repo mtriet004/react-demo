@@ -9,6 +9,7 @@ import DashBoard from './components/Admin/Content/DashBoard';
 import Login from './components/Auth/Login';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Signup from './components/Auth/Signup';
 
 const Layout = (props) => {
   return (
@@ -24,6 +25,7 @@ const Layout = (props) => {
             </Route>
 
             <Route path='/login' element={<Login />}></Route>
+            <Route path='/signup' element={<Signup />}></Route>
         </Routes>   
 
         <ToastContainer

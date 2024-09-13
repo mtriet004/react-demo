@@ -29,4 +29,5 @@ export const getUserWithPaginate = (page, limit) => axios.get(`/api/v1/participa
 
 export const login = (email, password) => axios.post('/api/v1/login', {email, password})
 
+export const signup = (email, password, username) => axios.post('/api/v1/register', {email, password, username})
 export {createNewUser, updateUser}
