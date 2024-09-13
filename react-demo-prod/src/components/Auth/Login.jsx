@@ -74,7 +74,7 @@ const Login = (props) => {
             <span className='forgot-password'>Forgot password?</span>
             <div>
                 <button className='btn-submit'
-                onClick={() => handleLogin()}>Login</button>
+                onClick={() => handleLogin()}>Loginaaa</button>
             </div>
             <div>
                 <span className='back' onClick={() => {navigator('/')}}> &#60;&#60; Go to homepage</span>
