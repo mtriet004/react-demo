@@ -78,7 +78,7 @@ const ModalUpdateUser = (props) => {
       toast.error(data.EM)
     }
   }
-  console.log('check data update', props.dataUpdate)
+  // console.log('check data update', props.dataUpdate)
   return (
     <>
 
