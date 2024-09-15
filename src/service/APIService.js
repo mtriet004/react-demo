@@ -27,7 +27,7 @@ export const deleteUser = (userId) => axios.delete('/api/v1/participant',{ data:
 
 export const getUserWithPaginate = (page, limit) => axios.get(`/api/v1/participant?page=${page}&limit=${limit}`)
 
-export const login = (email, password) => axios.post('/api/v1/login', {email, password})
+export const login = (email, password) => axios.post('/api/v1/login', {email, password, delay: 2000})
 
 export const signup = (email, password, username) => axios.post('/api/v1/register', {email, password, username})
 export {createNewUser, updateUser}
