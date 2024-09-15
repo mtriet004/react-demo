@@ -1,14 +1,10 @@
 import React from 'react'
-// import videoHomepage from '../../assets/video-homepage.mp4'
 import videoHomePage1 from '../../assets/video-homepage1.mp4'
-// import { useSelector } from 'react-redux'
-
+import { useSelector } from 'react-redux'
+import {useNavigate} from 'react-router-dom'
 const HomePage = (props) => {
-  // const isAuthenticated = useSelector(state => state.user.isAuthenticated)
-  // const account = useSelector(state => state.user.account)
-
-  // console.log('account', account)
-  // console.log('isAuthenticated', isAuthenticated)
+  const isAuthenticated = useSelector(state => state.user.isAuthenticated)
+  const navigate = useNavigate()
   return (
     <div className='homepage-container'>
         <video autoPlay muted loop>
@@ -22,7 +18,12 @@ const HomePage = (props) => {
               <div className='s-title'>Collect all the data you need to understand customers with forms
                   designed to be refreshingly different.</div>
               <div className='t-title'>
-                  <button>Get's started. It's free</button>
+                {isAuthenticated === false ?
+                  <button onClick={() => navigate('/login')}>Get's started. It's free</button>
+                  :
+                  <button onClick={() => navigate('/users')}>Do quiz</button>
+                }
+                  
               </div>
           </div>
       </div>       
