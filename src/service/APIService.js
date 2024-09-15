@@ -33,4 +33,6 @@ export const signup = (email, password, username) => axios.post('/api/v1/registe
 
 export const getQuizByUser = () => axios.get('/api/v1/quiz-by-participant')
 
+export const getDataQuiz = (quidId) => axios.get(`/api/v1/questions-by-quiz?quizId=${quidId}`)
+
 export {createNewUser, updateUser}
