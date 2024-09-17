@@ -1,18 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import { getDataQuiz } from '../../service/APIService'
 import _ from 'lodash'
 import './DetailQuiz.scss'
+import Question from './Question'
 const DetailQuiz = () => {
 
   const param = useParams()
   const quizId = param.id 
   const location = useLocation()
+  const [dataQuiz, setDataQuiz] = useState([])
+  const [index, setIndex] = useState(0)
+
   console.log(location)
 
   useEffect(() =>{
     fetchQuestion()
   }, [quizId])
+
+  const handleBack = () =>{
+    if(dataQuiz && dataQuiz.length && index > 0){
+      setIndex(index - 1)
+    }
+  }
+
+  const handleNext = () =>{
+    if(dataQuiz && dataQuiz.length > index + 1){
+      setIndex(index+1)
+    }
+  }
 
   const fetchQuestion = async() =>{
     let res = await getDataQuiz(quizId)
@@ -37,6 +53,7 @@ const DetailQuiz = () => {
         })
         .value()
         console.log(data)
+        setDataQuiz(data)
     }
   }
 
@@ -51,16 +68,11 @@ const DetailQuiz = () => {
             <img alt=''></img>
           </div>
           <div className='q-content'>
-            <div className='question'>Question 1: CC</div>
-            <div className='answer'>
-              <div className='a-child'>A</div>
-              <div className='b-child'>B</div>
-              <div className='c-child'>C</div>
-            </div>
+            <Question data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} index={index}/>
           </div>
           <div className='footer'>           
-            <button className='btn btn-secondary'>Back</button>
-            <button className='btn btn-primary '>Next</button>
+            <button className='btn btn-secondary' onClick={() => handleBack()}>Back</button>
+            <button className='btn btn-primary ' onClick={() => handleNext()}>Next</button>
           </div>
         </div>
         <div className='right-content'>
