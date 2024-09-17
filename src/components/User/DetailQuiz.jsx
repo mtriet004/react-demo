@@ -12,7 +12,7 @@ const DetailQuiz = () => {
   const [dataQuiz, setDataQuiz] = useState([])
   const [index, setIndex] = useState(0)
 
-  console.log(location)
+  // console.log(location)
 
   useEffect(() =>{
     fetchQuestion()
@@ -30,6 +30,10 @@ const DetailQuiz = () => {
     }
   }
 
+  const handleFinish = () =>{
+
+  }
+
   const fetchQuestion = async() =>{
     let res = await getDataQuiz(quizId)
     console.log(res)
@@ -39,7 +43,7 @@ const DetailQuiz = () => {
         // Group the elements of Array based on `color` property
         .groupBy("id")
         // `key` is group's name (color), `value` is the array of objects
-        .map((value, key) => {
+        .map((value, questionId) => {
             const answers = []
             let questionDescription, image = null;
             value.forEach((item, index) => {
@@ -47,15 +51,40 @@ const DetailQuiz = () => {
                     questionDescription = item.description
                     image = item.image
                 }
+                item.answers.isSelected = false
                 answers.push(item.answers)
             })
-            return {color: key, answers, questionDescription, image}
+            return {questionId, answers, questionDescription, image}
         })
         .value()
         console.log(data)
         setDataQuiz(data)
     }
   }
+
+  const handleCheckBox = (answerId, questionId) =>{
+    let dataQuizClone = _.cloneDeep(dataQuiz)
+    let question = dataQuizClone.find(item => +item.questionId === +questionId)
+    if(question && question.answers){
+      question.answers = question.answers.map(item =>{
+        if(+item.id === +answerId){
+          item.isSelected = !item.isSelected
+        }
+        return item
+      })
+    }
+
+    let index = dataQuizClone.findIndex(item => +item.questionId === +questionId)
+    if(index > -1){
+      dataQuizClone[index] = question
+      setDataQuiz(dataQuizClone)
+    }
+  }
+
+  useEffect(() => {
+    console.log('Updated dataQuiz:', dataQuiz); // Kiểm tra dataQuiz sau khi nó được cập nhật
+  }, [dataQuiz]); // Theo dõi khi dataQuiz thay đổi
+
 
   return (
     <div className='detail-quiz-container'>
@@ -68,11 +97,13 @@ const DetailQuiz = () => {
             <img alt=''></img>
           </div>
           <div className='q-content'>
-            <Question data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} index={index}/>
+            <Question data={dataQuiz && dataQuiz.length > 0 ? dataQuiz[index] : []} index={index} handleCheckBox={handleCheckBox}
+              />
           </div>
           <div className='footer'>           
             <button className='btn btn-secondary' onClick={() => handleBack()}>Back</button>
             <button className='btn btn-primary ' onClick={() => handleNext()}>Next</button>
+            <button className='btn btn-info' onClick={() => handleFinish()}>Finish</button>
           </div>
         </div>
         <div className='right-content'>
