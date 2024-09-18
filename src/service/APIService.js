@@ -35,4 +35,9 @@ export const getQuizByUser = () => axios.get('/api/v1/quiz-by-participant')
 
 export const getDataQuiz = (quidId) => axios.get(`/api/v1/questions-by-quiz?quizId=${quidId}`)
 
+export const postSubmitQuiz = (data) => {
+    console.log({...data})
+    return axios.post(`/api/v1/quiz-submit`, {...data})
+}
+
 export {createNewUser, updateUser}
