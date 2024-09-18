@@ -33,8 +33,8 @@ const ModalCreateUser = (props) => {
         setPreviewImage(URL.createObjectURL(e.target.files[0])) //hàm cực căng
         setImage(e.target.files[0])
     } 
-    
   }
+  
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()
