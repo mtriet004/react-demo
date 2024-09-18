@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState, useEffect } from 'react'
 import './ManageQuiz.scss'
 import Select from 'react-select'
 import { createNewQuiz } from '../../../../service/APIService';
@@ -6,57 +6,24 @@ import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
 import Accordion from 'react-bootstrap/Accordion';
 import { LuImagePlus } from "react-icons/lu";
-import ModalDeleteQuiz from './ModalDeleteQuiz';
-import ModalEditQuiz from './ModalEditQuiz'
-import { getAllQuizForAdmin } from '../../../../service/APIService'
 
-const ManageQuiz = (props) => {
-
+const ManageQuiz = () => {
 
     const [name,setName] = useState('')
     const [description,setDescription] = useState('')
     const [type, setType] = useState('')
     const [image, setImage] = useState(null)
-    const [previewImage, setPreviewImage] = useState(null)
+    const [previewImage, setPreviewImage] = useState('')
 
-    const [isShowModalDelete, setIsShowModalDelete] = useState(false)
-    const [isShowModalEdit, setIsShowModalEdit] = useState(false)
-    const [dataDelete, setDataDelete] = useState({})
-    const [dataUpdate, setDataUpdate] = useState({})
-    const [listQuiz, setListQuiz] = useState([])
-
-    useEffect(() =>{
-        fetchQuiz()
-    }, [])
-
-    const fetchQuiz =  async () =>{
-        let res = await getAllQuizForAdmin();
-        if(res && res.EC ===0){
-            setListQuiz(res.DT)
-        }
-    }
     const options = [
         { value: 'EASY', label: 'Easy' },
         { value: 'MEDIUM', label: 'Medium' },
         { value: 'HARD', label: 'Hard' },
     ];
 
-    
-
-
-    const handleDeleteBtn = (quiz) =>{
-        setIsShowModalDelete(true)
-        setDataDelete(quiz)
-    }
-
-    const handleEditBtn = (quiz) =>{
-        setIsShowModalEdit(true)
-        setDataUpdate(quiz)
-    }
-
     const handleChangeFile = (e) =>{
         if(e.target && e.target.files && e.target.files[0]){
-            setPreviewImage(URL.createObjectURL(e.target.files[0])) //hàm cực căng
+            setPreviewImage(URL.createObjectURL(e.target.files[0]))
             setImage(e.target.files[0])
         } 
     }
@@ -72,7 +39,6 @@ const ManageQuiz = (props) => {
             toast.success(res.EM)
             setName('')
             setDescription('')
-            setType('Easy')
             setImage('')
             setPreviewImage('')
         } else {
@@ -137,13 +103,8 @@ const ManageQuiz = (props) => {
             </Accordion.Item>
         </Accordion>
         <div className='list-detail'>
-            <TableQuiz handleDeleteBtn = {handleDeleteBtn} handleEditBtn = {handleEditBtn}
-            listQuiz={listQuiz} fetchQuiz={fetchQuiz}/>
+            <TableQuiz />
         </div>
-        <ModalDeleteQuiz show = {isShowModalDelete} setShow = {setIsShowModalDelete} dataDelete = {dataDelete} fetchQuiz= {fetchQuiz}/>
-        <ModalEditQuiz show={isShowModalEdit} setShow={setIsShowModalEdit} dataUpdate = {dataUpdate}
-        options = {options} setDataUpdate = {setDataUpdate} fetchQuiz= {fetchQuiz}
-        />
     </div>
   )
 }

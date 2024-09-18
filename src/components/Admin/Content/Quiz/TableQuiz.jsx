@@ -1,8 +1,39 @@
 import React from 'react'
-
+import { useState, useEffect } from 'react'
+import { getAllQuizForAdmin } from '../../../../service/APIService'
+import ModalDeleteQuiz from './ModalDeleteQuiz';
+import ModalEditQuiz from './ModalEditQuiz'
 const TableQuiz = (props) => {
 
-    const {handleDeleteBtn, handleEditBtn, listQuiz} = props
+    const [isShowModalDelete, setIsShowModalDelete] = useState(false)
+    const [isShowModalEdit, setIsShowModalEdit] = useState(false)
+    const [dataDelete, setDataDelete] = useState({})
+    const [dataUpdate, setDataUpdate] = useState({})
+    const [listQuiz, setListQuiz] = useState([])
+
+    useEffect(() =>{
+        fetchQuiz()
+    }, [])
+
+    const fetchQuiz =  async () =>{
+        setDataDelete({})
+        setDataUpdate({})
+        let res = await getAllQuizForAdmin();
+        if(res && res.EC ===0){
+            setListQuiz(res.DT)
+        }
+    }
+
+    const handleDeleteBtn = (quiz) =>{
+        setIsShowModalDelete(true)
+        setDataDelete(quiz)
+    }
+
+    const handleEditBtn = (quiz) =>{
+        setIsShowModalEdit(true)
+        setDataUpdate(quiz)
+    }
+
   return (
     <>
         <div><b>List Quizzes: </b></div>
@@ -33,9 +64,21 @@ const TableQuiz = (props) => {
                 })
                     
                 }
-            
             </tbody>
         </table>
+        <ModalDeleteQuiz
+            show = {isShowModalDelete}
+            setShow = {setIsShowModalDelete}
+            dataDelete = {dataDelete}
+            fetchQuiz= {fetchQuiz}
+        />
+        <ModalEditQuiz 
+            show={isShowModalEdit} 
+            setShow={setIsShowModalEdit} 
+            dataUpdate={dataUpdate}
+            setDataUpdate={setDataUpdate} 
+            fetchQuiz={fetchQuiz}
+        />
   </>
   )
 }

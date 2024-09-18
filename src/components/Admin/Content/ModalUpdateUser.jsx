@@ -131,9 +131,6 @@ const ModalUpdateUser = (props) => {
                     :
                     <span>Preview Image</span>
                 }
-                
-                {/* <img src='https://bit.ly/eric-bot-2' alt=''></img> */}
-                {/* <img></img> */}
             </div>
         </form>
         </Modal.Body>

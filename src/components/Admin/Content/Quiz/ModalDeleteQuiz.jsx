@@ -13,7 +13,7 @@ const ModalDeleteQuiz = (props) => {
 
     const handleSubmitDeleteQuiz = async () => {
         let data = await deleteQuiz(dataDelete.id)
-        if(data && data.EC ===0){
+        if(data && data.EC === 0){
             toast.success(data.EM)
             handleClose()
             await fetchQuiz()
@@ -25,9 +25,9 @@ const ModalDeleteQuiz = (props) => {
     <div>
         <Modal show={show} onHide={handleClose} backdrop='static'>
             <Modal.Header closeButton>
-                <Modal.Title>Confirm Delete User?</Modal.Title>
+                <Modal.Title>Confirm Delete the Quiz?</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Are you sure to delete that quiz? <b>{dataDelete.email}</b></Modal.Body>
+            <Modal.Body>Are you sure to delete that quiz with id= <b>{dataDelete.id}</b></Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={() => setShow(false)}>
                 Cancel
