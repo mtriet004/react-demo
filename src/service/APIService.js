@@ -51,4 +51,16 @@ export const createNewQuiz = (description, name, difficulty, image) =>{
 
 export const getAllQuizForAdmin = () => axios.get(`/api/v1/quiz/all`)
 
+export const deleteQuiz = (quizId) => axios.delete('/api/v1/quiz' + '/' + quizId)
+
+export const updateQuiz = (id, description, name, difficulty, image) => {
+    const data = new FormData();
+    data.append('id', id);
+    data.append('description', description);
+    data.append('name', name);
+    data.append('difficulty', difficulty);
+    data.append('quizImage', image);
+    return axios.put('api/v1/quiz ', data)
+}
+
 export {createNewUser, updateUser}

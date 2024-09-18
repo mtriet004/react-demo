@@ -8,6 +8,7 @@ import Layout from './Layout';
 import {store, persistor} from './redux/store';
 import {Provider} from 'react-redux'
 import 'nprogress/nprogress.css'
+import 'react-perfect-scrollbar/dist/css/styles.css';
 import { PersistGate } from 'redux-persist/integration/react'
  
 const root = ReactDOM.createRoot(document.getElementById('root'));
