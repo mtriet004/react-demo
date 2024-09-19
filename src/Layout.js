@@ -13,6 +13,7 @@ import Signup from './components/Auth/Signup';
 import ListQuiz from './components/User/ListQuiz';
 import DetailQuiz from './components/User/DetailQuiz';
 import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
+import Questions from './components/Admin/Content/Question/Questions';
 
 const NotFound = () =>{
   <div className='alert alert-danger'>404. Link not exists, please try again!</div>
@@ -29,6 +30,7 @@ const Layout = (props) => {
                 <Route index element={<DashBoard />}></Route>  
                 <Route path='manage-users' element={<ManageUser />}></Route>
                 <Route path='manage-quizzes' element={<ManageQuiz />}></Route>
+                <Route path='manage-questions' element={<Questions />}></Route>
             </Route>
             <Route path='/quiz/:id' element={<DetailQuiz />}></Route>
             <Route path='/login' element={<Login />}></Route>
