@@ -35,54 +35,50 @@ const Questions = (props) => {
     ]
   )
 
-  const handleAddRemoveQuestion = (type,id) =>{
-    if (type === 'ADD'){
+  const handleAddRemoveQuestion = (type, id) =>{
+    if(type==='ADD'){
       const newQuestion = {
         id: uuidv4(),
-        description:'',
+        description:'question 1',
         imageFile:'',
         imageName: '',
         answers: [
           {
             id: uuidv4(),
-            description: '',
+            description: 'answer 1',
             isCorrect: false,
           }
         ]
       }
-      setQuestions([...questions, newQuestion])
+      setQuestions([...questions,newQuestion])
     }
-    if (type=== 'REMOVE'){
-      let questionclone = _.cloneDeep(questions)
-      questionclone = questionclone.filter(item => item.id !== id)
-      setQuestions(questionclone)
+    if(type==='REMOVE'){
+      let questionsClone = _.cloneDeep(questions)
+      questionsClone = questionsClone.filter(item => item.id !== id)
+      setQuestions(questionsClone)
     }
-    console.log('check: ', type, id)
   }
 
-  const handleAddRemoveAnswer = (type,questionId,answerId) =>{
+  const handleAddRemoveAnswer = (type, questionId, answerId) => {
     let questionsClone = _.cloneDeep(questions)
-    if (type === 'ADD'){
-      const newAnswer =
-        {
-          id: uuidv4(),
-          description: 'answer 1',
-          isCorrect: false,
-        }
+    if(type==='ADD'){   
+      const newArr = {
+        id: uuidv4(),
+        description: 'answer 1',
+        isCorrect: false,
+      }
+
       let index = questionsClone.findIndex(item => item.id === questionId)
-      questionsClone[index].answers.push(newAnswer)
+      questionsClone[index].answers.push(newArr)
       setQuestions(questionsClone)
-      // console.log('check index', index)
     }
     if(type==='REMOVE'){
       let index = questionsClone.findIndex(item => item.id === questionId)
       questionsClone[index].answers = questionsClone[index].answers.filter(item => item.id !== answerId)
       setQuestions(questionsClone)
     }
-    // console.log('check: ', type, questionId,answerId)
   }
   
-  // console.log('question', questions)
   return (
     <div className='questions-container'>
         <div className='title'>
@@ -97,8 +93,7 @@ const Questions = (props) => {
               onChange={setSelectedQuiz}
               options={options}
             />
-          </div>
-          
+          </div>        
           <div className='mt-3 mb-2'> 
             Add questions:
           </div>
@@ -143,7 +138,7 @@ const Questions = (props) => {
                         <div key={answer.id} className='answers-content'>
                           <input 
                             className="form-check-input isCorrect"
-                            type="checkbox" //5:20:08
+                            type="checkbox"
                           />
                             <div className="form-floating answer-name">
                               <input
