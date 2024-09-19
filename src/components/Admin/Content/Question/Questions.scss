@@ -18,27 +18,36 @@
         .group-upload{
             padding-top: 15px;
             .label-up{
-                height: 30px;
-                border: 1px solid red;
-                border-radius: 5px;
-                padding: 0 10px;
-                margin-right: 5px;
+                margin-right: 10px;
                 cursor: pointer;
+                font-size: 25px;
+                color: #9068ff;
+                &:hover{
+                    color: #4400ff;
+                }
             }
         }
 
         .btn-add{
             padding: 15px;
             .icon-add {
-                font-size: 30px;
-                color: goldenrod;
+                font-size: 25px;
+                color: #2596ff;
                 cursor: pointer;
+
+                &:hover{
+                    color: #0989ff;
+                }
             }
             .icon-remove {
                 margin-left: 10px;
-                font-size: 30px;
-                color: cadetblue;
+                font-size: 25px;
+                color: #e8771c;
                 cursor: pointer;
+
+                &:hover{
+                    color: #ff7608;
+                }
             }
         }
     }
@@ -59,15 +68,23 @@
 
         .btn-group{
             .icon-add {
-                font-size: 30px;
-                color: goldenrod;
+                font-size: 25px;
+                color: #2596ff;
                 cursor: pointer;
+
+                &:hover{
+                    color: #0989ff;
+                }
             }
             .icon-remove {
                 margin-left: 10px;
-                font-size: 30px;
-                color: cadetblue;
+                font-size: 25px;
+                color: #e8771c;
                 cursor: pointer;
+
+                &:hover{
+                    color: #ff7608;
+                }
             }
         }
     }
