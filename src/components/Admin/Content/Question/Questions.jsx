@@ -8,8 +8,10 @@ import { MdPlusOne } from "react-icons/md";
 import { RiImageAddLine } from "react-icons/ri";
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash'
-
+import Lightbox from "yet-another-react-lightbox";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 const Questions = (props) => {
+
   const options = [
     { value: 'EASY', label: 'EASY' },
     { value: 'MEDIUM', label: 'MEDIUM' },
@@ -17,6 +19,9 @@ const Questions = (props) => {
   ];
 
   const [selectedQuiz, setSelectedQuiz] = useState({})
+  const [isPreviewImage, setIsPreviewImage] = useState(false)
+  const [previewImageUrl, setPreviewImageUrl] = useState('');
+
   const [questions, setQuestions] = useState(
     [
       {
@@ -24,6 +29,7 @@ const Questions = (props) => {
         description:'',
         imageFile:'',
         imageName: '',
+        imageUrl:'',
         answers: [
           {
             id: uuidv4(),
@@ -90,16 +96,19 @@ const Questions = (props) => {
     }
   }
 
-  const handleOnChangeFileQuestion = (questionId, e) =>{
-      let questionsClone = _.cloneDeep(questions)
-      let index = questionsClone.findIndex(item => item.id === questionId)
-      if(index > -1 && e.target && e.target.files && e.target.files[0]){
-        questionsClone[index].imageFile = e.target.files[0];
-        questionsClone[index].imageName = e.target.files[0].name;
-        setQuestions(questionsClone)
-      }
-      console.log('data', questions)
+  const handleOnChangeFileQuestion = (questionId, e) => {
+    let questionsClone = _.cloneDeep(questions);
+    let index = questionsClone.findIndex(item => item.id === questionId);
+    
+    if (index > -1 && e.target && e.target.files && e.target.files[0]) {
+      // Cập nhật đúng imageUrl cho câu hỏi hiện tại
+      questionsClone[index].imageUrl = URL.createObjectURL(e.target.files[0]);
+      questionsClone[index].imageFile = e.target.files[0];
+      questionsClone[index].imageName = e.target.files[0].name;
+      setQuestions(questionsClone);
+    }
   }
+  
 
   const handleAnswerQuesiton = (type, questionId, answerId, value) =>{
     let questionsClone = _.cloneDeep(questions)
@@ -123,6 +132,7 @@ const Questions = (props) => {
   const handleSubmitQuestionForQuiz = () =>{
     console.log('check questions', questions)
   }
+
   return (
     <div className='questions-container'>
         <div className='title'>
@@ -143,7 +153,6 @@ const Questions = (props) => {
           </div>
           {
             questions && questions.length > 0 
-
             && questions.map((question, index) => {
               return (
                 <div key={question.id} className='q-main mb-4'>         
@@ -159,14 +168,27 @@ const Questions = (props) => {
                         <label >Question {index+1} description</label>
                       </div>
                       <div className='group-upload'>
-                        <label htmlFor={`${question.id}`}><RiImageAddLine className='label-up'/> </label>
+                        <label htmlFor={`${question.id}`}>
+                          <RiImageAddLine className='label-up'/> 
+                        </label>
                         <input
-                          id = {`${question.id}`}
+                          id={`${question.id}`}
                           onChange={(e) => handleOnChangeFileQuestion(question.id, e)}
                           type='file'
-                          hidden></input>
-                        <span>{question.imageName ? question.imageName : '0 files is uploaded'}</span>
-                      </div>
+                          hidden
+                        />
+                        <span>
+                          <PhotoProvider>
+                          {question.imageName ? 
+                            <PhotoView src={question.imageUrl}>
+                              <span className="image-name" style={{ cursor: 'pointer' }}>
+                                {question.imageName}
+                              </span>
+                            </PhotoView>
+                            : '0 files uploaded'}
+                          </PhotoProvider>
+                        </span>
+                      </div>                  
                       <div className='btn-add'>
                         <span onClick={() => handleAddRemoveQuestion('ADD','')}>
                           <LuPlus className='icon-add'/>
@@ -178,10 +200,8 @@ const Questions = (props) => {
                         }   
                       </div>
                   </div>
-
                   {
                     question.answers && question.answers.length > 0 &&
-
                     question.answers.map((answer, index) =>{
                       return(
                         <div key={answer.id} className='answers-content'>
@@ -228,6 +248,7 @@ const Questions = (props) => {
             </div>
           }     
         </div>
+      
     </div>  
   )
 }

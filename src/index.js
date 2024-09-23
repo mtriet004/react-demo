@@ -10,7 +10,9 @@ import {Provider} from 'react-redux'
 import 'nprogress/nprogress.css'
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import { PersistGate } from 'redux-persist/integration/react'
- 
+import "yet-another-react-lightbox/styles.css";
+import 'react-photo-view/dist/react-photo-view.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
