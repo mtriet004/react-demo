@@ -9,7 +9,7 @@ import { RiImageAddLine } from "react-icons/ri";
 import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash'
 import { PhotoProvider, PhotoView } from "react-photo-view";
-import { createNewAnswer, createNewQuestion, getAllQuizForAdmin, getQuizWithQA } from '../../../../service/APIService'
+import { getAllQuizForAdmin, getQuizWithQA, upsertQA } from '../../../../service/APIService'
 import { toast } from 'react-toastify';
 
 
@@ -191,7 +191,7 @@ const QuizQA = (props) => {
   }
   
   const handleSubmitQuestionForQuiz = async () =>{
-    //todo
+    //todo  
     if(_.isEmpty(selectedQuiz)){
       toast.error('Please choose  a quiz')
       return
@@ -231,21 +231,34 @@ const QuizQA = (props) => {
       questions.isValidQuestion = true;
       return
     }
-  
-    //submit question
-    await Promise.all(questions.map(async (question) => {
-      const q = await createNewQuestion(+selectedQuiz.value, question.description, question.imageFile)
+    let questionClone = _.cloneDeep(questions)
+    console.log(questionClone)
+    for(let i=0; i<questionClone.length;i++){
+      if(questionClone[i].imageFile){
+        questionClone[i].imageFile = await toBase64(questionClone[i].imageFile)
+      }
+    }
+    let res = await upsertQA({
+      quizId : selectedQuiz.value,
+      questions : questionClone
+    })
 
-      //submit answer
-      await Promise.all(question.answers.map( async (answer) => {
-        await createNewAnswer(answer.description, answer.isCorrect, q.DT.id)
-      }))
-    }));
 
-    toast.success('Create questions and answers success')
-    setQuestions(initQuestions)
+    if(res && res.EC===0){
+      toast.success(res.EM)
+      fetchQuizWithQA()
+    }
+    console.log('check res', res)
   }
 
+  const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+
+  console.log('check questions', questions)
   return (
     <div className='questions-container'>
         <div className='add-new-question'>

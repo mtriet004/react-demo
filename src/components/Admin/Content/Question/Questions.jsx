@@ -15,7 +15,6 @@ import { toast } from 'react-toastify';
 
 const Questions = (props) => {
 
-
   const initQuestions = [
     {
       id: uuidv4(),
@@ -47,7 +46,7 @@ const Questions = (props) => {
           let newQuiz = res.DT.map(item =>{
             return{
               value: item.id,
-              label: `${item.id} - ${item.description}`
+              label: `${item.id} - ${item.name}`
             }
           })
           setListQuiz(newQuiz)

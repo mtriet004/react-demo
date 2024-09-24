@@ -79,4 +79,8 @@ export const assignQuiz = (quizId, userId) => axios.post('/api/v1/quiz-assign-to
 
 export const getQuizWithQA = (quizId) => axios.get(`api/v1/quiz-with-qa/${quizId}`)
 
+export const upsertQA = (data) =>{
+    return axios.post(`api/v1/quiz-upsert-qa`,{...data})
+}
+
 export {createNewUser, updateUser}
