@@ -10,12 +10,31 @@ import { v4 as uuidv4 } from 'uuid';
 import _ from 'lodash'
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { createNewAnswer, createNewQuestion, getAllQuizForAdmin } from '../../../../service/APIService'
+import { toast } from 'react-toastify';
+
 
 const Questions = (props) => {
 
+
+  const initQuestions = [
+    {
+      id: uuidv4(),
+      description:'',
+      imageFile:'',
+      imageName: '',
+      imageUrl:'',
+      isValidQuestion: false,
+      answers: [
+        {
+          id: uuidv4(),
+          description: '',
+          isCorrect: false,
+          isValidAnswer: false, 
+        }
+      ]
+    }
+  ]
   const [selectedQuiz, setSelectedQuiz] = useState({})
-  // const [isPreviewImage, setIsPreviewImage] = useState(false)
-  // const [previewImageUrl, setPreviewImageUrl] = useState('');
   const [listQuiz, setListQuiz] = useState([])
 
   useEffect(() =>{
@@ -35,24 +54,7 @@ const Questions = (props) => {
       }
   }
 
-  const [questions, setQuestions] = useState(
-    [
-      {
-        id: uuidv4(),
-        description:'',
-        imageFile:'',
-        imageName: '',
-        imageUrl:'',
-        answers: [
-          {
-            id: uuidv4(),
-            description: '',
-            isCorrect: false,
-          }
-        ]
-      }
-    ]
-  )
+  const [questions, setQuestions] = useState(initQuestions)
 
   const handleAddRemoveQuestion = (type, id) =>{
     if(type==='ADD'){
@@ -144,10 +146,47 @@ const Questions = (props) => {
   
   const handleSubmitQuestionForQuiz = async () =>{
     //todo
-    //validate data
+    if(_.isEmpty(selectedQuiz)){
+      toast.error('Please choose  a quiz')
+      return
+    }
 
+    //validate answer
+    let isValidAnswer = true
+    let indexQ, indexA = 0
+    for (let i = 0 ; i<questions.length; i++){   
+      for(let j=0 ; j<questions[i].answers.length;j++){
+        if(!questions[i].answers[j].description){
+          isValidAnswer = false
+          indexA = j
+          break
+        }
+      }
+      indexQ = i
+      if(isValidAnswer === false) break
+    }
+
+    if(isValidAnswer===false){
+      questions.isValidAnswer=true
+      return;
+    }
+    //validate question
+    let isValidQuestion = true
+    let indexQ1 = 0
+    for (let i = 0 ; i<questions.length; i++){   
+      if(!questions[i].description){
+        isValidQuestion=false
+        indexQ1=i
+        return
+      }
+    }
+
+    if(isValidQuestion===false){
+      questions.isValidQuestion = true;
+      return
+    }
+  
     //submit question
-
     await Promise.all(questions.map(async (question) => {
       const q = await createNewQuestion(+selectedQuiz.value, question.description, question.imageFile)
 
@@ -157,6 +196,8 @@ const Questions = (props) => {
       }))
     }));
 
+    toast.success('Create questions and answers success')
+    setQuestions(initQuestions)
   }
 
   return (
@@ -184,13 +225,14 @@ const Questions = (props) => {
                 <div key={question.id} className='q-main mb-4'>         
                   <div className='questions-content'>              
                       <div className="form-floating description">
-                        <input
-                          type="text"
-                          className='form-control'
-                          placeholder="name@example.com"  
-                          value={question.description} 
-                          onChange={(e) => handleOnChange('QUESTION', question.id, e.target.value)} 
-                        />
+                      <input
+                        type="text"
+                        className={`form-control ${!question.description ? 'is-invalid' : ''}`}  // Nếu câu hỏi trống, thêm class 'is-invalid'
+                        placeholder="Enter question description"
+                        value={question.description}
+                        onChange={(e) => handleOnChange('QUESTION', question.id, e.target.value)} 
+                      />
+
                         <label >Question {index+1} description</label>
                       </div>
                       <div className='group-upload'>
@@ -238,13 +280,14 @@ const Questions = (props) => {
                             onChange={(e) => handleAnswerQuesiton('CHECKBOX', question.id, answer.id, e.target.checked)}
                           />
                             <div className="form-floating answer-name">
-                              <input
-                                type="text"
-                                className='form-control'
-                                placeholder="name@example.com"
-                                value={answer.description}
-                                onChange={(e) => handleAnswerQuesiton('INPUT', question.id, answer.id, e.target.value)}
-                              />
+                            <input
+                              type="text"
+                              className={`form-control ${!answer.description ? 'is-invalid' : ''}`}  // Nếu câu trả lời trống, thêm class 'is-invalid'
+                              placeholder="Enter answer description"
+                              value={answer.description}
+                              onChange={(e) => handleAnswerQuesiton('INPUT', question.id, answer.id, e.target.value)}
+                            />
+
                               <label>Answer {index + 1}</label>
                             </div>
                             <div className='btn-group'>
