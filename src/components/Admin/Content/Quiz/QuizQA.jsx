@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Select from 'react-select';
-import './Questions.scss'
+import './QuizQA.scss'
 import { LuPlus } from "react-icons/lu";
 import { TiMinusOutline } from "react-icons/ti";
 import { CiCircleMinus } from "react-icons/ci";
@@ -13,8 +13,7 @@ import { createNewAnswer, createNewQuestion, getAllQuizForAdmin } from '../../..
 import { toast } from 'react-toastify';
 
 
-const Questions = (props) => {
-
+const QuizQA = (props) => {
 
   const initQuestions = [
     {
@@ -202,10 +201,6 @@ const Questions = (props) => {
 
   return (
     <div className='questions-container'>
-        <div className='title'>
-          aaa
-        </div>
-        <hr />
         <div className='add-new-question'>
           <div className='col-6 form-group'>
             <label className='mb-2'>Select Quiz</label>
@@ -322,4 +317,4 @@ const Questions = (props) => {
   )
 }
 
-export default Questions
+export default QuizQA
