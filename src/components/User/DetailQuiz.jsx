@@ -17,8 +17,6 @@ const DetailQuiz = () => {
   const [isShowModalResult, setIsShowModalResult] = useState(false)
   const [dataModalResult, setDataModalResult] = useState({})
 
-  // console.log(location)
-
   useEffect(() =>{
     fetchQuestion()
   }, [quizId])
@@ -123,11 +121,6 @@ const DetailQuiz = () => {
 
   }
 
-  // useEffect(() => {
-  //   console.log('Updated dataQuiz:', dataQuiz); // Kiểm tra dataQuiz sau khi nó được cập nhật
-  // }, [dataQuiz]); // Theo dõi khi dataQuiz thay đổi
-
-
   return (
     <div className='detail-quiz-container'>
         <div className='left-content'>
@@ -149,7 +142,7 @@ const DetailQuiz = () => {
           </div>
         </div>
         <div className='right-content'>
-            <RightContent dataQuiz = {dataQuiz} handleFinish = {handleFinish}/>
+            <RightContent dataQuiz = {dataQuiz} handleFinish = {handleFinish} setIndex = {setIndex}/>
         </div>
         <ModalResult show = {isShowModalResult} setShow = {setIsShowModalResult} dataModalResult={dataModalResult}/>
     </div>
