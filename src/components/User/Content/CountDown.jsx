@@ -32,7 +32,7 @@ const CountDown = (props) => {
             .filter((v,i) => v !== '00' || i > 0)
             .join(':')
     }
-        
+           
   return (
     <> 
         <div className='countdown-container'>

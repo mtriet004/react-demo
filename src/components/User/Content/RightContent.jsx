@@ -8,37 +8,62 @@ const RightContent = (props) => {
 
     const onTimeUp = () =>{
         props.handleFinish()
-
     }
 
-    const getClassQuestion = (index, question) =>{
+    // const getClassQuestion = (index, question) => {
+    //     if(question && question.answers.length > 0){
+    //         let isUnAnswered = question.answers.find(a => a.isSelected ===true)
+    //         if(isUnAnswered){
+    //             return 'question selected'
+    //         }
+    //     }
+    //     return 'question'
+    // }
+
+    // const handleClickQuestion = (question, index) =>{
+    //     props.setIndex(index)
+    //     if(refDiv.current){
+    //         refDiv.current.forEach(item =>{
+    //             if(item && item.className ==='question clicked'){
+    //                 item.className='question'
+    //             }
+    //         })
+    //     }
+
+    //     if(question && question.answers.length > 0){
+    //         let isUnAnswered =  question.answers.find(a => a.isSelected === true);
+    //         if (isUnAnswered) {
+    //             return; 
+    //         }
+    //     }
+    //     refDiv.current[index].className = 'question clicked'
+    // }
+
+    const getClassQuestion = (index, question) => {
         if(question && question.answers.length > 0){
-            let isUnAnswered =  question.answers.find(a => a.isSelected === true);
-            if (isUnAnswered) {
-                return 'question selected'
-            }
+            let isAnswer = question.answers.find(a => a.isSelected === true)
+            if(isAnswer) return 'question selected'
         }
-        return 'question '
+        return 'question'
     }
 
     const handleClickQuestion = (question, index) =>{
         props.setIndex(index)
         if(refDiv.current){
             refDiv.current.forEach(item =>{
-                if(item && item.className ==='question clicked'){
+                if(item && item.className==='question clicked'){
                     item.className='question'
                 }
             })
         }
-
         if(question && question.answers.length > 0){
-            let isUnAnswered =  question.answers.find(a => a.isSelected === true);
-            if (isUnAnswered) {
-                return; 
-            }
+            let isUnAnswered = question.answers.find(a => a.isSelected === true)
+            if(isUnAnswered) return 
         }
+
         refDiv.current[index].className = 'question clicked'
     }
+
 
   return (
     <>
