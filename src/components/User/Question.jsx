@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import _ from 'lodash';
 import './Question.scss';
 import { PhotoProvider, PhotoView } from 'react-photo-view';

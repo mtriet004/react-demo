@@ -37,7 +37,7 @@ export const getDataQuiz = (quidId) => axios.get(`/api/v1/questions-by-quiz?quiz
 
 export const postSubmitQuiz = (data) => {
     console.log({...data})
-    return axios.post(`/api/v1/quiz-submit`, {...data})
+    return axios.post(`/api/v1/quiz-submit`, {...data, delay: 2000}, )
 }
 
 export const postCreateNewQuiz = (description, name, difficulty, image) => {
