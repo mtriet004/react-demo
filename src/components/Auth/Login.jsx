@@ -50,6 +50,12 @@ const Login = (props) => {
     }
 
     const navigator = useNavigate()
+
+    const handleKeyDown = (e) =>{
+        if(e && e.key === 'Enter'){
+            handleLogin()
+        }
+    }
   return (
     <div className='login-container'>
         <div className='header'>
@@ -76,6 +82,7 @@ const Login = (props) => {
                  className='form-control'
                  value={password}
                  onChange={(e) => setPassword(e.target.value)}
+                 onKeyDown={e => handleKeyDown(e)}
                  ></input>
             </div>
             <span className='forgot-password'>Forgot password?</span>

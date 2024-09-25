@@ -83,4 +83,6 @@ export const upsertQA = (data) =>{
     return axios.post(`api/v1/quiz-upsert-qa`,{...data})
 }
 
+export const logout = (email, refresh_token) => axios.post('api/v1/logout', {email, refresh_token}) 
+
 export {createNewUser, updateUser}
