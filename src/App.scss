@@ -107,7 +107,11 @@ code {
     }
     
 }
-
+.languages{
+    .dropdown-toggle::after{
+        display: none !important;
+    }
+}
 video{
     position: fixed;
     bottom: 0;

@@ -6,12 +6,18 @@ import { toast } from 'react-toastify'
 import { useDispatch } from 'react-redux'
 import { doLogin } from '../../redux/action/userAction'
 import { ImSpinner10 } from "react-icons/im";
+import { RxEyeOpen } from "react-icons/rx";
+import { PiEyeClosedLight } from "react-icons/pi";
+import { FaHome } from "react-icons/fa";
+import Language from '../Header/Language'
 
 const Login = (props) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const dispatch = useDispatch()
     const [isLoading,setIsLoading] = useState(false)
+    const [isShowPassword, setIsShowPassword] = useState(false)
+
     const validateEmail = (email) => {
         return String(email)
           .toLowerCase()
@@ -61,6 +67,7 @@ const Login = (props) => {
         <div className='header'>
             <span>Don't have an account yet?</span>
             <button onClick={() => {navigator('/signup')}}>Sign up</button>
+            <Language />
         </div>
         <div className='title col-4 mx-auto'>
             Cực Căng
@@ -76,14 +83,21 @@ const Login = (props) => {
                  value={email}
                  onChange={(e) => setEmail(e.target.value)}></input>
             </div>
-            <div className='form-group'>
+            <div className='form-group pass-group'>
                 <label>Password</label>
-                <input type='password'
+                <input
+                 type= {isShowPassword ? 'text' : 'password'}
                  className='form-control'
                  value={password}
                  onChange={(e) => setPassword(e.target.value)}
                  onKeyDown={e => handleKeyDown(e)}
                  ></input>
+                 {isShowPassword
+                 ?
+                   <span className='icon-eyes' onClick={() => setIsShowPassword(false)}><RxEyeOpen/></span> 
+                 :
+                   <span className='icon-eyes' onClick={() => setIsShowPassword(true)}><PiEyeClosedLight /></span>
+                 }
             </div>
             <span className='forgot-password'>Forgot password?</span>
             <div>
@@ -96,7 +110,7 @@ const Login = (props) => {
                 </button>
             </div>
             <div>
-                <span className='back' onClick={() => {navigator('/')}}> &#60;&#60; Go to homepage</span>
+                <span className='back' onClick={() => {navigator('/')}} > <FaHome /> Go to homepage</span>
             </div>
         </div>
     </div>

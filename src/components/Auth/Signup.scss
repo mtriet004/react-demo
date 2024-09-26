@@ -1,8 +1,11 @@
 .signup-container{
     .header{      
         height: 45px;
-        text-align: right;
         padding: 10px 100px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
 
         button{
             border-radius: 5px;
@@ -46,15 +49,25 @@
                 background-color: cadetblue;
             }
         }
+
         .pass-group{
             position: relative;
 
             .icons-eye{
                 cursor: pointer;
                 position: absolute;
-                right: 50px;
+                right: 10px;
                 bottom: 10px;
             }
+        }
+        
+        .back{
+            margin-top: 10px;
+            cursor: pointer;
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

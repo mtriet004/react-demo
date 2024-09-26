@@ -5,6 +5,9 @@ import { signup } from '../../service/APIService'
 import { RxEyeOpen } from "react-icons/rx";
 import { toast } from 'react-toastify';
 import { PiEyeClosedLight } from "react-icons/pi";
+import { FaHome } from "react-icons/fa";
+import Language from '../Header/Language';
+
 const Signup = () => {
     const [email, setEmail] = useState('')
     const [isShowPassword, setIsShowPassword] = useState(false)
@@ -51,6 +54,7 @@ const Signup = () => {
         <div className='header'>
             <span>Already have an account?</span>
             <button onClick={() => {navigator('/login')}}>Login</button>
+            <Language />
         </div>
         <div className='title col-md-4 mx-auto'>
             Cực Căng
@@ -72,7 +76,7 @@ const Signup = () => {
             <div className='form-group pass-group'>
                 <label className='form-label'>Password (*)</label>
                 <input
-                    type= {isShowPassword ? 'type' : 'password'}
+                    type= {isShowPassword ? 'text' : 'password'}
                     value={password}
                     className='form-control'
                     onChange={(e) => setPassword(e.target.value)} 
@@ -97,7 +101,7 @@ const Signup = () => {
                 ></input>
             </div>
             <button className='btn-signup' onClick={() => handleSignup()}>Signup</button>
-            <span onClick={() => {navigator('/')}} style={{cursor: 'pointer'}}> &#60;&#60; Return to homepage</span>
+            <span onClick={() => {navigator('/')}} className='back'> <FaHome /> Return to homepage</span>
         </div>
     </div>
   )
