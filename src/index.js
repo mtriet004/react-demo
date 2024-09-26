@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './App.scss'
 import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter} from 'react-router-dom'
 import Layout from './Layout';
 import {store, persistor} from './redux/store';
 import {Provider} from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import i18n from './utils/i18n';
 import 'nprogress/nprogress.css'
 import 'react-perfect-scrollbar/dist/css/styles.css';
-import { PersistGate } from 'redux-persist/integration/react'
+import './App.scss'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import "yet-another-react-lightbox/styles.css";
 import 'react-photo-view/dist/react-photo-view.css';
 
