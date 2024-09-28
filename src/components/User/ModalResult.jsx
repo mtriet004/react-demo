@@ -1,16 +1,12 @@
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useNavigate } from 'react-router-dom';
 
 const  ModalResult = (props) => {
-    const {show, setShow, dataModalResult} = props
-    const navigate = useNavigate()
+
+    const {show, setShow, dataModalResult, handleShowAnswers} = props
     
-    const handleClose = () =>{
-        setShow(false)
-        navigate('/users')
-    }
+    const handleClose = () => setShow(false)
   
   return (
     <>
@@ -24,7 +20,10 @@ const  ModalResult = (props) => {
           <div>Total correct answers: <b>{dataModalResult.countCorrect}</b></div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShow(false)}>
+          <Button variant="secondary" onClick={() => {
+            handleClose()
+            handleShowAnswers()
+          }}>
             Show answers
           </Button>
           <Button variant="primary" onClick={() => handleClose()}>

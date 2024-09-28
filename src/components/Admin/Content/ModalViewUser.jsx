@@ -2,13 +2,9 @@ import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { LuImagePlus } from "react-icons/lu";
-// import { toast } from 'react-toastify';
-// import { updateUser } from '../../../service/APIService';
-// import _ from 'lodash'
+
 const ModalViewUser = (props) => {    
   const {show, setShow, dataUpdate} = props  
-
-//   const [show, setShow] = useState(false);
 
   const handleClose = () => {
     setShow(false)
@@ -20,7 +16,6 @@ const ModalViewUser = (props) => {
     setPreviewImage('')
     props.setDataUpdate({})
   };
-//   const handleShow = () => setShow(true);
   
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -29,37 +24,22 @@ const ModalViewUser = (props) => {
   const [image, setImage] = useState('')
   const [previewImage, setPreviewImage] = useState('')
 
-//   useEffect(() =>{
-//     if(!_.isEmpty(dataUpdate)){
-//         //update state
-//         setEmail(dataUpdate.email)
-//         // setPassword(dataUpdate.password)
-//         setUsername(dataUpdate.username)
-//         setRole(dataUpdate.role)
-//         setImage('')
-//         if(dataUpdate.image){
-//             setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)
-//         }
-//     }    
-//   },[dataUpdate])
+  useEffect(() =>{
+      setEmail(dataUpdate.email)
+      setUsername(dataUpdate.username)
+      setRole(dataUpdate.role)
+      setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)     
+  },[dataUpdate])
 
-
-    useEffect(() =>{
-        setEmail(dataUpdate.email)
-        setUsername(dataUpdate.username)
-        setRole(dataUpdate.role)
-        setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`)     
-    },[dataUpdate])
-
-    const handleUploadImage = (e) =>{
-    if(e.target && e.target.files && e.target.files[0]){
-        setPreviewImage(URL.createObjectURL(e.target.files[0])) //hàm cực căng
-        setImage(e.target.files[0])
+  const handleUploadImage = (e) =>{
+  if(e.target && e.target.files && e.target.files[0]){
+      setPreviewImage(URL.createObjectURL(e.target.files[0])) //hàm cực căng
+      setImage(e.target.files[0])
     }    
-}
+  }
+
   return (
     <>
-
       <Modal
         className='modal-add-user'
         show={show}

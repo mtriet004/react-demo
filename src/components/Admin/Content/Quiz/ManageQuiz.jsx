@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { postCreateNewQuiz } from '../../../../service/APIService';
 import { toast } from 'react-toastify';
 import TableQuiz from './TableQuiz';
-import Accordion from 'react-bootstrap/Accordion';
 import QuizQA from './QuizQA';
 import AssignQuiz from './AssignQuiz';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 const options = [
     { value: 'EASY', label: 'EASY' },
@@ -49,11 +50,14 @@ const ManageQuiz = (props) => {
     }
     return (
         <div className="quiz-container">
-            <Accordion defaultActiveKey="0">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Manage Quizzes</Accordion.Header>
-                    <Accordion.Body>
-                        <div className="add-new">
+            <Tabs
+                defaultActiveKey="profile"
+                id="uncontrolled-tab-example"
+                className="mb-3"
+                justify
+                >
+                <Tab eventKey="manage" title="Manage Quiz">
+                    <div className="add-new">
                             <fieldset className="border rounded-3 p-3">
                                 <legend className="float-none w-auto px-3">Add new Quiz</legend>
                                 <div className="form-floating mb-3">
@@ -77,54 +81,46 @@ const ManageQuiz = (props) => {
                                     <label >Description</label>
                                 </div>
                                 <div className='my-3'>
-                                    <Select
-                                        defaultValue={type}
-                                        onChange={setType}
-                                        options={options}
-                                        placeholder={"Quiz type..."}
-                                    />
-                                </div>
-                                <div className="more-actions form-group">
-                                    <label className='mb-1'> Upload Image</label>
-                                    <input
-                                        type="file"
-                                        className='form-control'
-                                        onChange={(event) => handleChangeFile(event)}
-                                    />
-                                </div>
-                                <div className='col-md-12 img-preview'>
-                                    {previewImage ?
-                                        <img src={previewImage} alt=''/>
-                                        :
-                                        <span>Preview Image</span>
-                                    }
-                                </div>
-                                <div className='mt-3'>
-                                    <button
-                                        onClick={() => handleSubmitQuiz()}
-                                        className='btn btn-warning'>Save</button>
-                                </div>
-                            </fieldset>
-                        </div>
-                        <div className="list-detail">
-                            <TableQuiz />
-                        </div>
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Update Q-A Quizzes</Accordion.Header>
-                    <Accordion.Body>
-                        <QuizQA />
-                    </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="2">
-                    <Accordion.Header>Assign to Users </Accordion.Header>
-                    <Accordion.Body>
-                        <AssignQuiz />
-                    </Accordion.Body>
-                </Accordion.Item>
-            </Accordion>
-            
+                                <Select
+                                    defaultValue={type}
+                                     onChange={setType}
+                                    options={options}
+                                     placeholder={"Quiz type..."}
+                                />
+                            </div>
+                            <div className="more-actions form-group">
+                                <label className='mb-1'> Upload Image</label>
+                                <input
+                                    type="file"
+                                    className='form-control'
+                                    onChange={(event) => handleChangeFile(event)}
+                                />
+                            </div>
+                            <div className='col-md-12 img-preview'>
+                                {previewImage ?
+                                    <img src={previewImage} alt=''/>
+                                    :
+                                    <span>Preview Image</span>
+                                }
+                            </div>
+                             <div className='mt-3'>
+                                <button
+                                    onClick={() => handleSubmitQuiz()}
+                                    className='btn btn-warning'>Save</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div className="list-detail">
+                        <TableQuiz />
+                    </div>
+                </Tab>
+                <Tab eventKey="updatequiz" title="Update Q-A Quizzes">
+                    <QuizQA />
+                </Tab>
+                <Tab eventKey="assign" title="Assign to Users">
+                    <AssignQuiz />
+                </Tab>
+            </Tabs>
         </div>
     )
 }

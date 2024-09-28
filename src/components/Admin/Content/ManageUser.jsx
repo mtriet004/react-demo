@@ -8,13 +8,13 @@ import ModalUpdateUser from "./ModalUpdateUser";
 import ModalViewUser from "./ModalViewUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import TableUserPaginate from "./TableUserPaginate";
-
+import {useTranslation} from 'react-i18next'
 const ManageUser = (props) => {
 
+    const {t} = useTranslation()
     const LIMIT_USER = 5
     const [pageCount, setPageCount] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
-
 
     const [showModalCreateUser, setShowModalCreateUser] = useState(false)
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false)
@@ -38,21 +38,9 @@ const ManageUser = (props) => {
         }
     }
 
-    // const fetchListUserWithPaginate = async (page) =>{
-    //     let res = await getUserWithPaginate(page, LIMIT_USER);
-    //     // console.log(res)
-    //     if(res.EC === 0){
-    //         console.log('res.dt = ', res.DT)
-    //         setListUsers(res.DT.users)
-    //         setPageCount(res.DT.totalPages)
-    //     }
-    // }
-
-
     const fetchListUserWithPaginate = async (page) =>{
         let res = await getUserWithPaginate(page, LIMIT_USER);
         if(res.EC === 0){
-            // console.log('check res.DT', res.DT)
             setListUsers(res.DT.users)
             setPageCount(res.DT.totalPages)
         }
@@ -76,11 +64,11 @@ const ManageUser = (props) => {
   return (
     <div className='manage-user-container'>
         <div className='title'>
-            Manage User
+            {t('manageusers.title')}
         </div>
         <div className='users-content'>
             <div className="btn-add-new">
-                <button className="btn btn-primary mb-2" onClick={() =>setShowModalCreateUser(true)}>Add New User <FaUserPlus /></button>
+                <button className="btn btn-primary mb-2" onClick={() =>setShowModalCreateUser(true)}>{t('manageusers.btnAdd')}<FaUserPlus /></button>
             </div>
             <div className="table-users">
                 <TableUserPaginate listUsers={listUsers}

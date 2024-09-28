@@ -2,9 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 import './Question.scss';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { IoIosClose, IoIosCheckmark } from "react-icons/io";
 
 const Question = (props) => {
-  const { data } = props;
+  const { data, isShowAnswers } = props;
 
   if (_.isEmpty(data)) {
     return <></>;
@@ -48,6 +49,16 @@ const Question = (props) => {
                     onChange={(e) => handleCheckBoxP(e, item.id, data.questionId)}
                   />
                   <label className='form-check-label'>{item.description}</label>
+                  {isShowAnswers === true && 
+                    <>
+                      {item.isSelected === true && item.isCorrect ===false 
+                        && <IoIosClose className='incorrect'/>
+                      }
+                      {item.isCorrect === true &&
+                        <IoIosCheckmark className='correct'/>
+                      }
+                    </>
+                  }
                 </div>
               </div>
             );

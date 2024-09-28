@@ -71,7 +71,6 @@ const ModalCreateUser = (props) => {
   }
   return (
     <>
-
       <Modal
         className='modal-add-user'
         show={show}

@@ -8,6 +8,10 @@ import { logout } from '../../service/APIService';
 import {toast} from 'react-toastify'
 import { doLogout } from '../../redux/action/userAction';
 import Language from './Language';
+import { FaReact } from "react-icons/fa";
+import { useTranslation} from 'react-i18next';
+import { useState } from 'react';
+import ModalProfileUser from './ModalProfileUser';
 
 const Header = () => {
 
@@ -15,6 +19,9 @@ const Header = () => {
   const account = useSelector(state => state.user.account)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const [isShowModalProfile, setIsShowModalProfile] = useState(false)
+
+  const { t } = useTranslation();
 
   const handleLogin = () =>{
     navigate('/login')
@@ -31,16 +38,21 @@ const Header = () => {
     }
   }
 
+  const handleBtnProfile = () =>{
+    setIsShowModalProfile(true)
+  }
+
   return (
+    <>
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <NavLink to='/' className='navbar-brand'>Cực Căng</NavLink>
+        <NavLink to='/' className='navbar-brand'> <FaReact className='loader-icon'/>Cực Căng</NavLink>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to='/' className='nav-link' >Home</NavLink>
-            <NavLink to='/users' className='nav-link'>Users</NavLink>
-            <NavLink to='/admins' className='nav-link'>Admin</NavLink>
+            <NavLink to='/' className='nav-link' >{t('header.title1')}</NavLink>
+            <NavLink to='/users' className='nav-link'>{t('header.title2')}</NavLink>
+            <NavLink to='/admins' className='nav-link'>{t('header.title3')}</NavLink>
             {/* <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="users">User</Nav.Link>
             <Nav.Link href="admins">Admin</Nav.Link> */}
@@ -48,20 +60,23 @@ const Header = () => {
           <Nav>
             {isAuthenticated === false ?
               <>
-                <button className='btn-login' onClick={() =>handleLogin()}>Login</button>
-                <button className='btn-signup' onClick={() => navigate('/signup')}>Signup</button>
+                <button className='btn-login' onClick={() =>handleLogin()}>{t('header.button.Login')}</button>
+                <button className='btn-signup' onClick={() => navigate('/signup')}>{t('header.button.Signup')}</button>
               </>
             :
-              <NavDropdown title="Settings" id="basic-nav-dropdown">
-                <NavDropdown.Item >Profile</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => handleLogout()}>Logout</NavDropdown.Item>
+              <NavDropdown title={t('header.button.tt')} id="basic-nav-dropdown">
+                <NavDropdown.Item onClick={() =>  handleBtnProfile()}>{t('header.button.Profile')}</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => handleLogout()}>{t('header.button.Logout')}</NavDropdown.Item>
               </NavDropdown>
             }
             <Language />
           </Nav>
         </Navbar.Collapse>
       </Container>
+      
     </Navbar>
+      <ModalProfileUser show = {isShowModalProfile} setShow={setIsShowModalProfile}/>
+    </>
   );
 }
 

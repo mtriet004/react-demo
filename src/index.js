@@ -13,6 +13,8 @@ import './App.scss'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "yet-another-react-lightbox/styles.css";
 import 'react-photo-view/dist/react-photo-view.css';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

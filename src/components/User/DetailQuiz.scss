@@ -2,6 +2,7 @@
     display: flex;
     gap: 20px;
     padding: 50px;
+    
     .left-content{
         border: 2px solid #ccc;
         border-radius: 5px;
@@ -51,4 +52,27 @@
         width: 30%;
         padding: 20px;
     }
+}
+
+.header{
+    padding: 25px 70px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    .quiz-detail-new-header{
+        font-size: 20px;
+        a {
+            text-decoration: none !important;
+        }
+    }
+}
+
+.correct{
+    color: green;
+    font-size: 25px;
+}
+
+.incorrect{
+    color: red;
+    font-size: 25px;
 }

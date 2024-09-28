@@ -2,7 +2,7 @@ import React from 'react'
 import videoHomePage1 from '../../assets/video-homepage1.mp4'
 import { useSelector } from 'react-redux'
 import {useNavigate} from 'react-router-dom'
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation} from 'react-i18next';
 
 const HomePage = (props) => {
 
@@ -27,11 +27,10 @@ const HomePage = (props) => {
               </div>
               <div className='t-title'>
                 {isAuthenticated === false ?
-                  <button onClick={() => navigate('/login')}>Get's started. It's free</button>
+                  <button onClick={() => navigate('/login')}>{t('homepage.title3.login')}</button>
                   :
-                  <button onClick={() => navigate('/users')}>Do quiz</button>
-                }
-                  
+                  <button onClick={() => navigate('/users')}>{t('homepage.title3.doQuiz')}</button>
+                }         
               </div>
           </div>
       </div>       

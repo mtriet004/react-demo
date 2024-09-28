@@ -26,7 +26,7 @@ const ModalUpdateQuiz = (props) => {
                 setPreviewImage(`data:image/jpeg;base64,${dataUpdate.image}`);
             }
         }
-    }, [props.dataUpdate]);
+    }, [dataUpdate]);
 
     const handleClose = () => {
         setShow(false)

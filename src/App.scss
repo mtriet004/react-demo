@@ -29,8 +29,9 @@ code {
 }
 
 .app-container{
+
     .header-container{
-        padding-right: 250px;
+        padding-right: 125px;
         .btn-login{
             border-radius: 5px;
             padding: 0 15px;
@@ -61,10 +62,24 @@ code {
                 }
             }
         }
-        // .navbar-nav .nav-link.active{
-        //     color: blue;
-        // }
+        .loader-icon{
+            font-size: 14;
+            margin-bottom: 3px;
+            margin-right: 5px;
+            color: #00d4ff;
+            animation: spin 5s infinite linear;
+        }
+        
+        @keyframes spin{
+            from {
+                transform: scale(1) rotate(0deg);
+            }
+            to {
+                transform: scale(1) rotate(360deg);
+            }
+        }
     }
+
     .homepage-container{
         .homepage-content{
             padding: 100px;
@@ -112,6 +127,7 @@ code {
         display: none !important;
     }
 }
+
 video{
     position: fixed;
     bottom: 0;

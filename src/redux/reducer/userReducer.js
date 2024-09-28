@@ -1,5 +1,6 @@
 import { FETCH_USER_LOGOUT_SUCCESS } from '../action/userAction';
 import { FETCH_USER_LOGIN_SUCCESS } from '../action/userAction';
+
 const INITIAL_STATE = {
     account:{
         email: '',
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
     },
     isAuthenticated : false
 };
+
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case FETCH_USER_LOGIN_SUCCESS:

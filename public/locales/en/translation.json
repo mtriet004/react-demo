@@ -1,9 +1,64 @@
 {
-      "homepage": {
-        "title1": "Get to know your customers with forms worth filling out",
-        "title2": "Collect all the data you need to understand customers with forms designed to be refreshingly different.",
-        "title3":{
-           " login": "Get's started. It's free"
-        }
-      }
+  "homepage": {
+    "title1": "Get to know your customers with forms worth filling out",
+    "title2": "Collect all the data you need to understand customers with forms designed to be refreshingly different.",
+    "title3":{
+        "login": "Get's started. It's free",
+        "doQuiz": "Do quiz"
+    }
+  },
+  "header":{
+    "title1": "Home",
+    "title2": "Users",
+    "title3": "Admin",
+    "button":{
+      "Login":"Login",
+      "Signup":"Signup",
+      "Logout":"Logout",
+      "Profile":"Profile",
+      "tt":"Settings"
+    }
+  },
+  "listquiz":{
+    "name":"Quiz",
+    "btn":"Start now",
+    "status":"You don't have any quiz now..."
+  },
+  "detailquiz":{
+    "home":"Home",
+    "user":"Users",
+    "data":"Quiz",
+    "btnBack":"Back",
+    "btnNext":"Next",
+    "btnFinish":"Finish"
+  },
+  "admin":{
+    "button":{
+      "Logout":"Logout",
+      "Profile":"Profile",
+      "tt":"Settings"
+    }
+  },
+  "dashboard":{
+    "title": "Analytics Dashboard",
+    "t1":"Total Users",
+    "t2":"Total Quizzes",
+    "t3":"Total Answers",
+    "t4": "Quizzes",
+    "t5":"Question",
+    "t6":"Answer",
+    "t7":"Total Questions"
+  },
+  "sidebar":{
+    "t1":"New",
+    "title":"Dashboard",
+    "title1":"Features",
+    "t2":"Manage Users",
+    "t3":"Manage Quizzes",
+    "t4":"Manage Questions"
+  },
+  "manageusers":{
+    "title":"Manage Users",
+    "btnAdd":"Add New User"
+  }
 }

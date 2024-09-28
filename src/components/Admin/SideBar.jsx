@@ -15,10 +15,13 @@ import sidebarBg from '../../assets/bg2.jpg';
 import { useNavigate } from 'react-router-dom';
 import {MdDashboard} from 'react-icons/md'
 import {DiReact} from 'react-icons/di'
-
+import {useTranslation} from 'react-i18next'
 const SideBar = (props) =>{
+
     const {collapsed, toggled, handleToggleSidebar} = props
     const navigator = useNavigate()
+    const {t} = useTranslation()
+
     return(
         <>
              <ProSidebar
@@ -42,7 +45,7 @@ const SideBar = (props) =>{
                         }}
                     >
                         
-                        <span style={{cursor: 'pointer'}} onClick={() =>{navigator('/')}}> <DiReact size={'3em'} color='00bfff'/> Minh Triết</span>
+                        <span style={{cursor: 'pointer'}} onClick={() =>{navigator('/')}}> <DiReact size={'3em'} color='00bfff' className='loader-icon'/>Minh Triết</span>
                     </div>
                 </SidebarHeader>
 
@@ -50,25 +53,25 @@ const SideBar = (props) =>{
                     <Menu iconShape="circle">
                         <MenuItem
                             icon={<MdDashboard />}
-                            suffix={<span className="badge red">New</span>}
+                            suffix={<span className="badge red">{t('sidebar.t1')}</span>}
                         >
-                            Dashboard
+                            {t('sidebar.title')}
                             <Link to='/admins'></Link>
                         </MenuItem>
                         {/* <MenuItem icon={<FaGem />}> components </MenuItem> */}
                         <SubMenu
                             suffix={<span className="badge yellow">3</span>}
-                            title='Features'
+                            title={t('sidebar.title1')}
                             icon={<FaGem/>}
                         >
-                            <MenuItem > Quản lý Users
+                            <MenuItem > {t('sidebar.t2')}
                             <Link to='/admins/manage-users'></Link>
                             </MenuItem>
-                            <MenuItem> Quản lý bài Quiz
+                            <MenuItem> {t('sidebar.t3')}
                                 <Link to='/admins/manage-quizzes'></Link>
                             </MenuItem>
                             <MenuItem>
-                             Quản lý câu hỏi
+                            {t('sidebar.t4')}
                              <Link to='/admins/manage-questions'></Link>
                              </MenuItem>
                         </SubMenu>

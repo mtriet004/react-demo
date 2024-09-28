@@ -44,7 +44,6 @@ const QuizQA = (props) => {
     if  (selectedQuiz && selectedQuiz.value){
       fetchQuizWithQA()
     }
-    
   }, [selectedQuiz])
 
   function urltoFile(url, filename, mimeType){

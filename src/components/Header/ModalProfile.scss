@@ -1,0 +1,43 @@
+.modal-profile{
+    .profile{
+        .img-preview{
+            height: 150px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: grey;
+    
+            img{
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+        .label-upload{
+            margin-top: 20px;
+            width: fit-content;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid;
+            border: none;
+            background: #eeeeee;
+            &:hover{
+                background-color: #dcdcdc;
+            }
+        }
+        button{
+            float: right;
+            
+        }
+    }
+    .pass{
+        .pass-group{
+            position: relative;
+            .icon-eyes{
+                position: absolute;
+                right: 30px;
+                bottom: 9px;
+            }
+        }
+    }
+}
