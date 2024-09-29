@@ -127,28 +127,50 @@ const DetailQuiz = () => {
       setIsShowModalResult(true)
 
       //update DataQuiz with correct Answer
-      if (res.DT && res.DT.quizData) {
-        let dataQuizClone = _.cloneDeep(dataQuiz);
-        let a = res.DT.quizData;
-        for (let q of a) {
-            for (let i = 0; i < dataQuizClone.length; i++) {
-                if (+q.questionId === +dataQuizClone[i].questionId) {
-                    //update answer
-                    let newAnswers = [];
-                    for (let j = 0; j < dataQuizClone[i].answers.length; j++) {
-                        let s = q.systemAnswers.find(item => +item.id === +dataQuizClone[i].answers[j].id)
-                        if (s) {
-                            dataQuizClone[i].answers[j].isCorrect = true;
-                        }
-                        newAnswers.push(dataQuizClone[i].answers[j]);
-                    }
-                    dataQuizClone[i].answers = newAnswers;
+      // if (res.DT && res.DT.quizData) {
+      //   let dataQuizClone = _.cloneDeep(dataQuiz);
+      //   let a = res.DT.quizData;
+      //   for (let q of a) {
+      //       for (let i = 0; i < dataQuizClone.length; i++) {
+      //           if (+q.questionId === +dataQuizClone[i].questionId) {
+      //               //update answer
+      //               let newAnswers = [];
+      //               for (let j = 0; j < dataQuizClone[i].answers.length; j++) {
+      //                   let s = q.systemAnswers.find(item => +item.id === +dataQuizClone[i].answers[j].id)
+      //                   if (s) {
+      //                       dataQuizClone[i].answers[j].isCorrect = true;
+      //                   }
+      //                   newAnswers.push(dataQuizClone[i].answers[j]);
+      //               }
+      //               dataQuizClone[i].answers = newAnswers;
+      //           }
+      //       }
+      //   }
+      //   setDataQuiz(dataQuizClone);
+
+      if(res && res.DT.quizData){
+        let dataQuizClone = _.cloneDeep(dataQuiz)
+        let a = res.DT.quizData
+        console.log('check a', a)
+        for (let q of a){
+          for(let i = 0 ; i < dataQuizClone.length; i++){
+            if(+q.questionId === +dataQuizClone[i].questionId){
+              let newAnswers = []
+              for(let j = 0; j < dataQuizClone[i].answers.length; j++){
+                let s = q.systemAnswers.find(item => +item.id === +dataQuizClone[i].answers[j].id)
+                if (s) {
+                  dataQuizClone[i].answers[j].isCorrect = true
                 }
+                newAnswers.push(dataQuizClone[i].answers[j])
+              }
+              dataQuizClone[i].answers=newAnswers
             }
+          }
         }
-        setDataQuiz(dataQuizClone);
-    }
-    } else{
+        setDataQuiz(dataQuizClone)
+      }
+
+    } else {
       alert('something wrong...')
     }
   }
@@ -157,6 +179,8 @@ const DetailQuiz = () => {
     if( !isSubmitQuiz) return 
     setIsShowAnswers(true)
   }
+
+  console.log(dataQuiz)
   return (
     <>
       <div className='header'>
