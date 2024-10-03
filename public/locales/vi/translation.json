@@ -1,0 +1,64 @@
+{
+  "homepage": {
+    "title1": "Hiểu khách hàng của bạn thông qua các biểu mẫu",
+    "title2": "Thu thập tất cả dữ liệu bạn cần để có thể hiểu khách hàng với các biểu mẫu được thiết kế tùy biến.",
+    "title3":{
+        "login": "Bắt đầu nào!",
+        "doQuiz":"Làm bài"
+    }
+  },
+  "header":{
+    "title1": "Trang chủ",
+    "title2": "Người dùng",
+    "title3": "Quản lý",
+    "button":{
+      "Login":"Đăng nhập",
+      "Signup":"Đăng ký",
+      "Logout":"Đăng xuất",
+      "Profile":"Thông tin",
+      "tt":"Cài đặt"
+    }
+  },
+  "listquiz":{
+    "name":"Bài",
+    "btn":"Bắt đầu",
+    "status":"Bạn không có bài kiểm tra nào..."
+  },
+  "detailquiz":{
+    "home":"Trang chủ",
+    "user":"Người dùng",
+    "data":"Bài kiểm tra",
+    "btnBack":"Quay lại",
+    "btnNext":"Tiếp tục",
+    "btnFinish":"Kết thúc"
+  },
+  "admin":{
+    "button":{
+      "Logout":"Đăng xuất",
+      "Profile":"Thông tin cá nhân",
+      "tt":"Cài đặt"
+    }
+  },
+  "dashboard":{
+    "title": "Bảng Thống Kê",
+    "t1":"Số người dùng",
+    "t2":"Số bài kiểm tra",
+    "t3":"Số câu trả lời",
+    "t4":"Bài kiểm tra",
+    "t5":"Câu hỏi",
+    "t6":"Câu trả lời",
+    "t7":"Số câu hỏi"
+  },
+  "sidebar":{
+    "t1":"New",
+    "title":"Bảng điều khiển",
+    "title1":"Chức năng",
+    "t2":"Quản lý người dùng",
+    "t3":"Quản lý bài kiểm tra",
+    "t4":"Quản lý câu hỏi"
+  },
+  "manageusers":{
+    "title":"Quản lý người dùng",
+    "btnAdd":"Thêm người dùng"
+  }
+}
